@@ -197,7 +197,10 @@ async function migrate() {
     const host = key.slice(PREFIX.length);
     for (const e of all[key]) {
       const h = hostOf(normalizeUrl(e.url));
-      if (h && h !== host) (moves[host] ||= []).push({ e, h });
+      if (h && h !== host) {
+        if (!moves[host]) moves[host] = [];
+        moves[host].push({ e, h });
+      }
     }
   }
   for (const [host, list] of Object.entries(moves)) {

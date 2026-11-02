@@ -85,7 +85,7 @@ button.ghost {
 }
 button.danger { color: var(--danger); }
 .muted { color: var(--muted); }
-.hidden { display: none !important; }
+.hidden { display: none; }
 footer { min-height: 16px; margin-top: 6px; font-size: 11px; text-align: right; }
 .app-title { font-size: 14px; }
 .host { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -107,10 +107,11 @@ button:disabled { opacity: .45; cursor: default; }
   padding: 2px 4px 2px 0;
 }
 .item-main { flex: 1; min-width: 0; padding: 5px 8px; color: var(--text); text-decoration: none; border-radius: 6px; }
-a.item-main:hover { background: var(--border); }
+.item:hover { background: var(--border); }
 .item-title { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .item-meta { font-size: 11px; }
-button.icon { padding: 3px 7px; }
+button.icon { padding: 3px 7px; background: var(--card); }
+button.icon:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
 .link-line { font-size: 11px; margin-top: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .actions { justify-content: flex-start; }
 .row.first { margin-top: 0; }
