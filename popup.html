@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- List view: the default when the popup opens -->
+  <section id="listView">
+    <header>
+      <strong class="app-title">Bookmarks</strong>
+      <button id="add" class="primary small" title="Add a note for the current site">+ Add</button>
+    </header>
+    <p id="addHint" class="muted hint hidden">Open a regular website to add a note here.</p>
+    <div id="list"></div>
+  </section>
+
+  <!-- Editor view: shown after pressing + Add or the edit button on an entry -->
+  <section id="editView" class="hidden">
+    <header>
+      <button id="back" class="ghost" title="Back to list">← Back</button>
+      <span id="editHost" class="muted host"></span>
+    </header>
+    <div class="entry">
+      <div class="row first">
+        <label>Title<input id="f-title" placeholder="Show name" spellcheck="false"></label>
+      </div>
+      <div class="row">
+        <label>Episode<input id="f-episode" placeholder="S2E05" spellcheck="false"></label>
+        <label>Time<input id="f-time" placeholder="00:42:10" spellcheck="false"></label>
+      </div>
+      <div class="row bottom">
+        <label>URL<input id="f-url" placeholder="https://…" spellcheck="false"></label>
+        <button id="delete" class="ghost danger">Delete</button>
+      </div>
+      <div class="actions">
+        <button id="relink" class="ghost" title="Save the current tab as this entry's link">Link this page</button>
+      </div>
+      <div id="updated" class="updated muted"></div>
+    </div>
+  </section>
+
+  <footer><span id="status" class="muted"></span></footer>
+  <script src="popup.js"></script>
+</body>
+</html>

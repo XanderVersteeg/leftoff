@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Leftoff",
+  "version": "1.1.0",
+  "description": "Quick per-site notes to remember where you left off in any show, film or book.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Leftoff",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["storage", "activeTab"],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": { "default": "Alt+N" },
+      "description": "Open Leftoff"
+    }
+  }
+}
