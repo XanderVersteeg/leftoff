@@ -76,16 +76,6 @@ async function showList() {
   for (const host of hosts) {
     const section = document.createElement("div");
     section.className = "group";
-    const h = document.createElement("h4");
-    h.textContent = host;
-    if (host === currentHost) {
-      const tag = document.createElement("span");
-      tag.className = "tag";
-      tag.textContent = "this site";
-      h.appendChild(tag);
-    }
-    section.appendChild(h);
-
     const entries = [...all[PREFIX + host]].sort((a, b) => (b.updated || 0) - (a.updated || 0));
     for (const e of entries) {
       const item = document.createElement("div");
@@ -280,10 +270,7 @@ window.addEventListener("blur", () => {
   currentUrl = tab?.url || null;
   currentHost = currentUrl ? hostOf(currentUrl) : null;
 
-  if (!currentHost) {
-    $("add").disabled = true;
-    $("addHint").classList.remove("hidden");
-  }
+  if (!currentHost) $("add").disabled = true;
 
   await migrate();
 

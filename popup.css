@@ -86,16 +86,15 @@ button.ghost {
 button.danger { color: var(--danger); }
 .muted { color: var(--muted); }
 .hidden { display: none; }
-footer { min-height: 16px; margin-top: 6px; font-size: 11px; text-align: right; }
+footer { position: fixed; right: 12px; bottom: 4px; font-size: 11px; pointer-events: none; }
 .app-title { font-size: 14px; }
 .host { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 button.small { width: auto; padding: 5px 12px; }
 button:disabled { opacity: .45; cursor: default; }
 .hint { margin: -4px 0 8px; font-size: 11px; }
 .empty { text-align: center; padding: 16px 0; }
-.group { margin-bottom: 10px; }
-.group h4 { margin: 0 0 4px; font-size: 11px; font-weight: 600; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-.tag { font-weight: 500; font-size: 10px; padding: 1px 6px; border-radius: 9px; background: var(--accent); color: #fff; }
+.group:last-child .item:last-child { margin-bottom: 0; }
+.entry { margin-bottom: 0; }
 .item {
   display: flex;
   align-items: center;
@@ -107,7 +106,7 @@ button:disabled { opacity: .45; cursor: default; }
   padding: 2px 4px 2px 0;
 }
 .item-main { flex: 1; min-width: 0; padding: 5px 8px; color: var(--text); text-decoration: none; border-radius: 6px; }
-.item:hover { background: var(--border); }
+.item:hover:not(:has(button:hover)) { background: var(--border); }
 .item-title { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .item-meta { font-size: 11px; }
 button.icon { padding: 3px 7px; background: var(--card); }
