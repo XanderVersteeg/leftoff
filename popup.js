@@ -61,11 +61,12 @@ async function showList() {
   const list = $("list");
   list.innerHTML = "";
 
-  // Current site first, then the rest alphabetically.
+  // Current site first, then the rest by most recently updated.
+  const latest = (h) => Math.max(0, ...all[PREFIX + h].map((e) => e.updated || 0));
   const hosts = Object.keys(all)
     .filter((k) => k.startsWith(PREFIX))
     .map((k) => k.slice(PREFIX.length))
-    .sort((a, b) => (a === currentHost ? -1 : b === currentHost ? 1 : a.localeCompare(b)));
+    .sort((a, b) => (a === currentHost ? -1 : b === currentHost ? 1 : latest(b) - latest(a)));
 
   if (hosts.length === 0) {
     list.innerHTML = '<p class="muted empty">No notes yet. Press <b>+ Add</b> on a site you\'re watching.</p>';
