@@ -120,4 +120,12 @@ button.icon:hover { background: var(--accent); border-color: var(--accent); colo
 .actions { justify-content: flex-start; }
 .row.first { margin-top: 0; }
 .row.bottom { align-items: flex-end; }
-.row.bottom button { padding: 5px 8px; }
+.row.bottom label input { display: block; box-sizing: border-box; height: 29px; }
+.row.bottom button {
+  box-sizing: border-box;
+  height: 29px;
+  padding: 0 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
