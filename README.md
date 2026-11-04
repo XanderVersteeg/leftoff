@@ -35,7 +35,7 @@ A new note left completely empty is discarded when you go back.
 
 ### Editing a note
 
-- **Link this page** replaces the note's URL with the current tab's URL. This is handy for saving the exact episode or chapter page. It only appears when you're on the same site as the note.
+- **Link this page** replaces the note's URL with the current tab's URL. This is handy for saving the exact episode or chapter page. It's the copy icon next to the URL field, and is disabled on pages that can't be linked (like `chrome://` pages).
 - Editing the URL to a different site moves the note to that site's group.
 - **Delete** removes the note after a confirmation.
 

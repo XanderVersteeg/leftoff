@@ -85,7 +85,12 @@ button.ghost {
 }
 button.danger { color: var(--danger); }
 .muted { color: var(--muted); }
-.hidden { display: none; }
+.hidden { display: none !important; }
+.confirm { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, .35); z-index: 10; }
+.confirm-box { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; width: 200px; text-align: center; font-size: 12px; box-shadow: 0 4px 16px rgba(0, 0, 0, .3); }
+.confirm-actions { display: flex; gap: 6px; justify-content: center; margin-top: 8px; }
+.confirm-actions button { padding: 3px 10px; }
+#relink { display: flex; align-items: center; padding: 6px; }
 footer { position: fixed; right: 12px; bottom: 4px; font-size: 11px; pointer-events: none; }
 .app-title { font-size: 14px; }
 .host { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

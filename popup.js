@@ -46,7 +46,6 @@ async function putSite(host, entries) {
   try {
     if (entries.length === 0) await chrome.storage.sync.remove(key);
     else await chrome.storage.sync.set({ [key]: entries });
-    setStatus("Saved");
   } catch (e) {
     setStatus("Save failed: " + e.message);
   }
@@ -122,22 +121,12 @@ async function openEditor(host, id) {
 
   $("listView").classList.add("hidden");
   $("editView").classList.remove("hidden");
-  $("editHost").textContent = host;
   for (const f of FIELDS) $("f-" + f).value = entry[f] || "";
-  renderMeta();
-  // Linking the current tab only makes sense if it's on the same site.
-  $("relink").classList.toggle("hidden", host !== currentHost);
   $("f-title").focus();
-}
-
-function renderMeta() {
-  const { entry } = editing;
-  $("updated").textContent = entry.updated ? "Updated " + formatDate(entry.updated) : "";
 }
 
 function touch() {
   editing.entry.updated = Date.now();
-  renderMeta();
 }
 
 function scheduleSave() {
@@ -166,8 +155,6 @@ async function relocate() {
   const target = await getSite(newHost);
   target.unshift(entry);
   editing = { host: newHost, entries: target, entry };
-  $("editHost").textContent = newHost;
-  $("relink").classList.toggle("hidden", newHost !== currentHost);
 }
 
 async function flush(move = true) {
@@ -221,9 +208,15 @@ $("relink").addEventListener("click", async () => {
   await flush();
 });
 
-$("delete").addEventListener("click", async () => {
+$("delete").addEventListener("click", () => {
   const name = editing.entry.title || "this entry";
-  if (!confirm(`Delete ${name}?`)) return;
+  $("confirmText").textContent = `Delete ${name}?`;
+  $("confirm").classList.remove("hidden");
+  $("confirmNo").focus();
+});
+$("confirmNo").addEventListener("click", () => $("confirm").classList.add("hidden"));
+$("confirmYes").addEventListener("click", async () => {
+  $("confirm").classList.add("hidden");
   editing.entries = editing.entries.filter((e) => e.id !== editing.entry.id);
   await flush();
   editing = null;
@@ -253,10 +246,7 @@ $("add").addEventListener("click", async () => {
   editing = { host: currentHost, entries, entry };
   $("listView").classList.add("hidden");
   $("editView").classList.remove("hidden");
-  $("editHost").textContent = currentHost;
   for (const f of FIELDS) $("f-" + f).value = entry[f] || "";
-  renderMeta();
-  $("relink").classList.remove("hidden");
   $("f-title").focus();
 });
 
@@ -270,7 +260,10 @@ window.addEventListener("blur", () => {
   currentUrl = tab?.url || null;
   currentHost = currentUrl ? hostOf(currentUrl) : null;
 
-  if (!currentHost) $("add").disabled = true;
+  if (!currentHost) {
+    $("add").disabled = true;
+    $("relink").disabled = true; // nothing linkable on chrome:// and similar pages
+  }
 
   await migrate();
 

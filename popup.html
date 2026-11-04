@@ -21,7 +21,7 @@
   <section id="editView" class="hidden">
     <header>
       <button type="button" id="back" class="ghost" title="Back to list">← Back</button>
-      <span id="editHost" class="muted host"></span>
+      <button type="button" id="delete" class="ghost danger" title="Delete this note">Delete</button>
     </header>
     <div class="entry">
       <div class="row first">
@@ -33,13 +33,24 @@
       </div>
       <div class="row bottom">
         <label>URL<input id="f-url" placeholder="https://…" spellcheck="false"></label>
-        <button type="button" id="delete" class="ghost danger">Delete</button>
+        <button type="button" id="relink" class="ghost icon" title="Link this page"
+          aria-label="Link this page">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
       </div>
-      <div class="actions">
-        <button type="button" id="relink" class="ghost" title="Save the current tab as this entry's link">Link this
-          page</button>
+      <div id="confirm" class="confirm hidden" role="alertdialog" aria-label="Confirm delete">
+        <div class="confirm-box">
+          <div id="confirmText">Delete this note?</div>
+          <div class="confirm-actions">
+            <button type="button" id="confirmNo" class="ghost">Cancel</button>
+            <button type="button" id="confirmYes" class="ghost danger">Delete</button>
+          </div>
+        </div>
       </div>
-      <div id="updated" class="updated muted"></div>
     </div>
   </section>
 
